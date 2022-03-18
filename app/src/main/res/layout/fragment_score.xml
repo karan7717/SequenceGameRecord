@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".score.ScoreFragment" >
+        <data>
+                <variable
+                    name = "scoreViewModel"
+                    type ="com.example.sequencerecord.score.ScoreFragmentViewModel"/>
+
+        </data>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scoreConstrain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+
+                <TextView
+                    android:id="@+id/jGreenScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.greenJ)}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/greenScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/jScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/jScore"
+                    app:layout_constraintTop_toTopOf="@+id/greenScoreText" />
+
+                <TextView
+                    android:id="@+id/nonJGreenScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.greenNonJ)}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/greenScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/nonJScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/nonJScore"
+                    app:layout_constraintTop_toTopOf="@+id/greenScoreText" />
+
+                <TextView
+                    android:id="@+id/totalGreenScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.totalGreen)}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/greenScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/totalScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/totalScore"
+                    app:layout_constraintTop_toTopOf="@+id/greenScoreText" />
+
+                <TextView
+                    android:id="@+id/jBlueScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.blueJ)}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/blueScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/jGreenScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/jGreenScore"
+                    app:layout_constraintTop_toTopOf="@+id/blueScoreText" />
+
+                <TextView
+                    android:id="@+id/nonJBlueScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.blueNonJ)}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/blueScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/nonJGreenScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/nonJGreenScore"
+                    app:layout_constraintTop_toTopOf="@+id/blueScoreText" />
+
+                <TextView
+                    android:id="@+id/totalBlueScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.totalBlue)}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/blueScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/totalGreenScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/totalGreenScore"
+                    app:layout_constraintTop_toTopOf="@+id/blueScoreText" />
+
+                <TextView
+                    android:id="@+id/jLeadingScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.leadingJ)}"
+                    android:textColor="@{scoreViewModel.valueScoreLiveData.leadingJColor}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/leadingScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/jBlueScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/jBlueScore"
+                    app:layout_constraintTop_toTopOf="@+id/leadingScoreText" />
+
+                <TextView
+                    android:id="@+id/nonJLeadingScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.leadingNonJ)}"
+                    android:textColor="@{scoreViewModel.valueScoreLiveData.leadingNonJColor}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/leadingScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/nonJBlueScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/nonJBlueScore"
+                    app:layout_constraintTop_toTopOf="@+id/leadingScoreText" />
+
+                <TextView
+                    android:id="@+id/totalLeadingScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{String.valueOf(scoreViewModel.valueScoreLiveData.leadingTotalScore)}"
+                   android:textColor="@{scoreViewModel.valueScoreLiveData.leadingTotalColor}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/leadingScoreText"
+                    app:layout_constraintEnd_toEndOf="@+id/totalBlueScore"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/totalBlueScore"
+                    app:layout_constraintTop_toTopOf="@+id/leadingScoreText" />
+
+                <TextView
+                    android:id="@+id/totalScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/total_score"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/nonJScore"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/nonJScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/non_j"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/totalScore"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/jScore"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/jScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/j"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/nonJScore"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/greenScoreText"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/greenScoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="36dp"
+                    android:text="@string/green_total_score"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/blueScoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/blue_score"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/greenScoreText" />
+
+                <TextView
+                    android:id="@+id/leadingScoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/leading_by"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/blueScoreText" />
+
+                <EditText
+                    android:id="@+id/enterScoreGreen"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:ems="10"
+                    android:hint="@string/green"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                    app:layout_constraintEnd_toStartOf="@+id/enterScoreBlue"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/enterScoreBlue"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/blue"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/enterScoreGreen"
+                    app:layout_constraintEnd_toStartOf="@+id/typeJNonJ"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/enterScoreGreen" />
+
+
+                <Spinner
+                    android:id="@+id/typeJNonJ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="j"
+                    android:entries="@array/type_game"
+                    android:minHeight="48dp"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/enterScoreBlue"
+                    app:layout_constraintEnd_toStartOf="@+id/submitButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/enterScoreBlue"
+                    app:layout_constraintTop_toTopOf="@+id/enterScoreBlue"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:id="@+id/submitButton"
+                    android:layout_width="108dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@drawable/submit_button_background"
+
+                    android:enabled="false"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/submit"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/typeJNonJ"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/typeJNonJ"
+                    app:layout_constraintTop_toTopOf="@+id/typeJNonJ" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="250dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+</layout>

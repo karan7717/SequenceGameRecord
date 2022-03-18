@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Sequence Record</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start">START</string>
+    <string name="green">GREEN</string>
+    <string name="blue">BLUE</string>
+    <string name="j_nonj">TYPE</string>
+    <string name="submit">SUBMIT</string>
+    <string name="green_total_score">GREEN SCORE</string>
+    <string name="total_score">Total Score</string>
+    <string name="non_j">Non J</string>
+    <string name="j">J</string>
+    <string name="blue_score">BLUE SCORE</string>
+    <string name="leading_by">LEADING BY</string>
+    <string name="_0">0</string>
+    <string name="rv_green_score_inputText">0</string>
+    <string name="rv_blue_score_inputText">0</string>
+    <string name="rv_game_type_input">j/Non J</string>
+    <string name="rv_entry_date_input">Date</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="blueCBottomSheet">Blue</string>
+    <string name="greenBottomSheet">Green</string>
+    <string name="edit_scoreBottomSheet">EDIT SCORE</string>
+    <string name="updateBottomSheetButton">UPDATE</string>
+    <string-array name="type_game">
+        <item>J</item>
+        <item>Non J</item>
+    </string-array>
+</resources>

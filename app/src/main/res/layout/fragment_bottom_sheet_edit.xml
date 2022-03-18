@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheetFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".score.BottomSheetEditFragment">
+
+        <TextView
+            android:id="@+id/bottomSheetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/edit_scoreBottomSheet"
+
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/greenBottomSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:hint="@string/greenBottomSheet"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toStartOf="@+id/blueBottomSheet"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottomSheetTitle" />
+
+        <EditText
+            android:id="@+id/blueBottomSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/blueCBottomSheet"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/greenBottomSheet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bottomSheetSpinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/greenBottomSheet"
+            app:layout_constraintTop_toTopOf="@+id/greenBottomSheet" />
+
+        <Spinner
+            android:id="@+id/bottomSheetSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/type_game"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/blueBottomSheet"
+            app:layout_constraintEnd_toStartOf="@+id/updateButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/blueBottomSheet"
+            app:layout_constraintTop_toTopOf="@+id/blueBottomSheet" />
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/updateBottomSheetButton"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomSheetSpinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/bottomSheetSpinner"
+            app:layout_constraintTop_toTopOf="@+id/bottomSheetSpinner" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
