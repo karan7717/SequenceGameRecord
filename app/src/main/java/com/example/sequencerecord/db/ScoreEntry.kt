@@ -11,7 +11,7 @@ import java.time.LocalDate
 @Entity(tableName = "scoreInfo")
 data class ScoreEntry @RequiresApi(Build.VERSION_CODES.O) constructor(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Int,
     val green: Int,
     val blue: Int,
     val type: String,

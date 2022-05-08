@@ -15,7 +15,7 @@ abstract class RoomAppDB : RoomDatabase() {
         @Volatile
         private var INSTANCE : RoomAppDB? = null
 
-        fun getAppDatabase(context : Context): RoomAppDB? {
+        fun getAppDatabase(context : Context): RoomAppDB {
             if(INSTANCE == null) {
                 synchronized(this) {
                     INSTANCE = Room.databaseBuilder(

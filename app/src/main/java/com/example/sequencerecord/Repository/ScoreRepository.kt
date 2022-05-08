@@ -8,12 +8,14 @@ import com.example.sequencerecord.score.*
 import com.example.sequencerecord.db.RoomAppDB
 
 import com.example.sequencerecord.db.ScoreEntry
+import javax.inject.Inject
+
 private const val GREEN_J = "greenJ"
 private const val BLUE_J = "blueJ"
 private const val GREEN_NONJ = "greenNonJ"
 private const val BLUE_NONJ = "blueNonJ"
 
-class ScoreRepository( private val app : Application) {
+class ScoreRepository @Inject constructor( private val app : Application) {
     val dao by lazy{ RoomAppDB.getAppDatabase(app)?.scoreDao() }
     val scoreSharedPref= app.getSharedPreferences(
         "score_pref", Context.MODE_PRIVATE

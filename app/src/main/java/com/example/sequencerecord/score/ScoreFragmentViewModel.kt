@@ -7,13 +7,17 @@ import com.example.sequencerecord.Repository.ScoreRepository
 import com.example.sequencerecord.db.ScoreEntry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class ScoreFragmentViewModel( app : Application , private val scoreRepository: ScoreRepository) : ViewModel() {
+class ScoreFragmentViewModel @Inject constructor( app : Application , private val scoreRepository: ScoreRepository) : ViewModel() {
 
     val valueScoreLiveData = MutableLiveData<ScoreValues>()
     val scoreEntryLiveData = MutableLiveData<ScoreEntry?>()
     val allScoreLiveData = MutableLiveData<List<ScoreEntry?>>()
+
+
+
 
     init {
 

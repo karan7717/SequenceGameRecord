@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+<data>
+    <variable
+        name="scoreEntry"
+        type="com.example.sequencerecord.db.ScoreEntry" />
 
+</data>
 
 
         <androidx.cardview.widget.CardView
@@ -27,7 +32,8 @@
                     android:id="@+id/rvGameType"
                     android:layout_width="47dp"
                     android:layout_height="20dp"
-                    android:hint="@string/rv_game_type_input"
+
+                    android:text="@{scoreEntry.type}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rvDate"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -40,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:hint="@string/rv_green_score_inputText"
+                   android:text="@{String.valueOf(scoreEntry.green)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rvBlueScore"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -53,7 +59,7 @@
                     android:id="@+id/rvBlueScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/rv_blue_score_inputText"
+                    android:text="@{String.valueOf(scoreEntry.blue)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rvGameType"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -93,7 +99,7 @@
                     android:id="@+id/rvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/rv_entry_date_input"
+                    android:text="@{scoreEntry.dateGame}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/rvEdit"
                     app:layout_constraintHorizontal_bias="0.5"

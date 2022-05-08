@@ -21,17 +21,19 @@ import com.example.sequencerecord.Repository.ScoreRepository
 import java.time.LocalDate
 import com.example.sequencerecord.databinding.FragmentScoreBinding
 import com.example.sequencerecord.db.ScoreEntry
+import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ScoreFragment : Fragment(), RecyclerAdapter.RowClickListener {
-
+    @Inject
+    lateinit var scoreFragmentViewModel: ScoreFragmentViewModel
     private lateinit var binding: FragmentScoreBinding
 
 
-
-
     lateinit var recyclerAdapter: RecyclerAdapter
-    lateinit var viewModel: ScoreFragmentViewModel
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -44,38 +46,38 @@ class ScoreFragment : Fragment(), RecyclerAdapter.RowClickListener {
             recyclerAdapter = RecyclerAdapter(this@ScoreFragment)
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
- }
+        }
 
 
 
-        activity?.let {  val scoreRepository = ScoreRepository( it.application)
-
-        viewModel = ViewModelProvider(this,ScoreFragmentViewModelFactory(it.application,scoreRepository)).get(ScoreFragmentViewModel::class.java)
-        viewModel.allScoreLiveData.observe(viewLifecycleOwner, Observer {
-            ArrayList(it)?.let { it1 -> recyclerAdapter.setListData(it1) }
-
-            recyclerAdapter.notifyDataSetChanged()
+        activity?.let {
+//
+            scoreFragmentViewModel.allScoreLiveData.observe(viewLifecycleOwner, Observer {
+                ArrayList(it)?.let { it1 -> recyclerAdapter.submitList(it1)}
 
 
-        })
-            binding.scoreViewModel = viewModel
+
+
+
+            })
+            binding.scoreViewModel = scoreFragmentViewModel
             binding.lifecycleOwner = this
         }
-          editTextWatcher()
+        editTextWatcher()
         submitButtonClick()
-        viewModel.getScoreAndResult()
+        scoreFragmentViewModel.getScoreAndResult()
         observeScoreEntryLiveData()
 
-
+        scoreFragmentViewModel.getAllScores()
 
         return binding.root
     }
 
     override fun onDeleteScoreClickListener(score: ScoreEntry?) {
         if (score != null) {
-            viewModel.deleteScoreInfo(score)
+            scoreFragmentViewModel.deleteScoreInfo(score)
         }
-        viewModel.getScoreAndResult()
+        scoreFragmentViewModel.getScoreAndResult()
     }
 
     override fun onEditClickListener(score: ScoreEntry?) {
@@ -127,8 +129,8 @@ class ScoreFragment : Fragment(), RecyclerAdapter.RowClickListener {
             if (binding.submitButton.text.equals("SUBMIT")) {
                 println("First if")
                 val score = ScoreEntry(0, green, blue, test, date)
-                viewModel.insertScoreInfo(score)
-                viewModel.addScore(green, blue, test)
+                scoreFragmentViewModel.insertScoreInfo(score)
+                scoreFragmentViewModel.addScore(green, blue, test)
                 binding.enterScoreGreen.setText("")
                 binding.enterScoreBlue.setText("")
                 binding.typeJNonJ.setSelection(0)
@@ -136,10 +138,10 @@ class ScoreFragment : Fragment(), RecyclerAdapter.RowClickListener {
             } else {
                 val id: Int =
                     binding.enterScoreGreen.getTag(binding.enterScoreGreen.id).toString().toInt()
-                println(id)
-                viewModel.getScoreViaId(id)
+
+                scoreFragmentViewModel.getScoreViaId(id)
             }
-            viewModel.getScoreAndResult()
+            scoreFragmentViewModel.getScoreAndResult()
             it.hideKeyboard()
         }
     }
@@ -150,51 +152,54 @@ class ScoreFragment : Fragment(), RecyclerAdapter.RowClickListener {
             context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(windowToken, 0)
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
-    fun observeScoreEntryLiveData(){
+    fun observeScoreEntryLiveData() {
 
 
-        viewModel.scoreEntryLiveData.observe(viewLifecycleOwner, Observer {
-            var green = if (binding.enterScoreGreen.text.toString().isEmpty()) 0 else{binding.enterScoreGreen.text.toString().toInt()}
-            var blue = if (binding.enterScoreBlue.text.toString().isEmpty()) 0 else{binding.enterScoreBlue.text.toString().toInt()}
+        scoreFragmentViewModel.scoreEntryLiveData.observe(viewLifecycleOwner, Observer {
+            var green = if (binding.enterScoreGreen.text.toString().isEmpty()) 0 else {
+                binding.enterScoreGreen.text.toString().toInt()
+            }
+            var blue = if (binding.enterScoreBlue.text.toString().isEmpty()) 0 else {
+                binding.enterScoreBlue.text.toString().toInt()
+            }
             var type = binding.typeJNonJ
             var date = LocalDate.now().toString()
 
             var test: String = type.getSelectedItem().toString()
 
-           val prevGreen = it?.green
-          val  prevBlue  = it?.blue
-          val   prevType = it?.type
-                  if (prevGreen != null) {
-                   if (prevGreen != green || prevBlue != blue || !prevType.equals(test)) {
-                      try {
+            val prevGreen = it?.green
+            val prevBlue = it?.blue
+            val prevType = it?.type
+            if (prevGreen != null) {
+                if (prevGreen != green || prevBlue != blue || !prevType.equals(test)) {
+                    try {
                         val id: Int =
-                            binding.enterScoreGreen.getTag(binding.enterScoreGreen.id).toString().toInt()
-                        viewModel.deleteScore(prevGreen, prevBlue!!, prevType!!)
+                            binding.enterScoreGreen.getTag(binding.enterScoreGreen.id).toString()
+                                .toInt()
+                        scoreFragmentViewModel.deleteScore(prevGreen, prevBlue!!, prevType!!)
                         val score = ScoreEntry(id, green, blue, test, date)
-                        viewModel.updateScoreInfo(score)
-                        viewModel.addScore(green, blue, test)
-                    }catch (e: Exception){
+                        scoreFragmentViewModel.updateScoreInfo(score)
+                        scoreFragmentViewModel.addScore(green, blue, test)
+                    } catch (e: NullPointerException) {
                         println("No id found")
                     }
 
                 }
                 binding.submitButton.setText("SUBMIT")
             } else {
-               val score = ScoreEntry(0, green, blue, test, date)
-                if(score.green != 0 && score.blue != 0) {
-                    viewModel.insertScoreInfo(score)
+                val score = ScoreEntry(0, green, blue, test, date)
+                if (score.green != 0 && score.blue != 0) {
+                    scoreFragmentViewModel.insertScoreInfo(score)
                     binding.submitButton.setText("SUBMIT")
-                    viewModel.addScore(green, blue, test)
+                    scoreFragmentViewModel.addScore(green, blue, test)
                 }
             }
             binding.enterScoreGreen.setText("")
             binding.enterScoreBlue.setText("")
             binding.typeJNonJ.setSelection(0)
-            viewModel.getScoreAndResult()
-
-
-
+            scoreFragmentViewModel.getScoreAndResult()
 
 
         })
